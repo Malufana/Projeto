@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Upload</title>
+
+        <style>
+            *{
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+            body{
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #f4f4f4;
+                color: #333;
+                padding: 20px;
+            }
+            form{
+                max-width: 600px;
+                margin: 0 auto;
+                background-color: #ffffff;
+                padding: 30px;
+                border-radius: 10px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            }
+            h1{
+                text-align: center;
+                margin-bottom: 30px;
+                font-size: 24px;
+                color: #444;
+            }
+            .uploadSection{
+                margin-bottom: 20px;
+                display: flex;
+                flex-direction: column;
+            }
+            label{
+                margin-bottom: 8px;
+                font-weight: 600;
+            }
+            input[type='file']{
+                padding: 10px;
+                background-color: #f8f8f8;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+            button[type='submit']{
+                background-color: #4e4e4e;
+                color: white;
+                padding: 12px;
+                width: 100%;
+                border: none;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+            button[type='submit']:hover{
+                background-color: #333;
+            }
+        </style>
+    </head>
+
+    <body>
+        <form method="POST" enctype="multipart/form-data">
+
+            {% csrf_token %} 
+            <h1>UPLOAD DE ARQUIVOS</h1>
+
+            <div class="uploadSection">
+                <label for="ambientes">Upload de Ambientes:</label>
+                <input type="file" name="ambientes" id="ambientes">
+            </div>
+
+            <div class="uploadSection">
+                <label for="patrimonios">Upload de Patrimonios:</label>
+                <input type="file" name="patrimonios" id="patrimonios">
+            </div>
+
+            <div class="uploadSection">
+                <label for="manutentores">Upload de Manutentores:</label>
+                <input type="file" name="manutentores" id="manutentores">
+            </div>
+
+            <div class="uploadSection">
+                <label for="gestores">Upload de Gestores:</label>
+                <input type="file" name="gestores" id="gestores">
+            </div>
+
+            <div class="uploadSection">
+                <label for="area">Upload de Area:</label>
+                <input type="file" name="area" id="area">
+            </div>
+
+            <div class="uploadSection">
+                <button type="submit">ENVIAR</button>
+            </div>
+
+        </form>
+    </body>
+</html>

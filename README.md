@@ -19,8 +19,9 @@ adicionar no INSTALLED_APPS\
 'rest_framework_simplejwt'\
 'api' //pasta que vai ficar o models\
 \
-Dentro da pasta api - entrar em models.py
-from django.db import models
+## models.py
+Dentro da pasta api - entrar em models.py\
+from django.db import models\
 
 class Gestores(models.Model)://Tabela Gestores\
     sn = models.CharField(max_length=10, unique=True)\
@@ -69,4 +70,57 @@ class OrdemServico(models.Model)://Tabela OrdemServico\
     manutentor = models.ForeignKey(Manutentores, on_delete=models.CASCADE)\
     prioridade = models.IntegerChoices(choices=prioridadesChoices.choices, default=prioridadesChoices.baixa)\
     funcionario = models.CharField(max_length=100)\
-    sn = models.CharField(max_length=100)
+    snFuncionario = models.CharField(max_length=100)\
+
+## forms.py
+Criar um arquivo .py dentro da pasta api\
+
+from django import forms
+
+class ExcelUploadForm(forms.Form):\
+    ambientes = forms.FileField(required=False, label='Arquivo de Ambientes')\
+    patrimonios = forms.FileField(required=False, label='Arquivo de Patrimonios')\
+    gestores = forms.FileField(required=False, label='Arquivo de Gestores')\
+    manutentores = forms.FileField(required=False, label='Arquivo de Manutentores')\
+    areas = forms.FileField(required=False, label='Arquivo de Areas')\
+    
+## views.py
+
+from django.shortcuts import render\
+import pandas as pd\
+from api.models import *\
+from .forms import ExcelUploadForm\
+from django.views import View\
+
+class ProcessUploadView(View):\
+    def get(self, request):\
+        form = ExcelUploadForm()\
+        return render(request, 'upload.html', {'form': form})\
+        
+    def processUpload(request):\
+        if request.method == 'POST':\
+            form = ExcelUploadForm(request.POST, request.FILES)\
+    
+            if form.is_valid():\
+                arquivos = {\
+                    'ambientes': (request.FILES.get('ambientes'), Ambientes),\
+                    'patrimonios': (request.FILES.get('patrimonios'), Patrimonios),\
+                    'gestores': (request.FILES.get('gestores'), Gestores),\
+                    'manutentores': (request.FILES.get('manutentores'), Manutentores),\
+                    'area': (request.FILES.get('area'), Area)\
+                }
+    
+                for nomeCampo, (arquivo, modelo) in arquivos.items():\
+                    if arquivo:\
+                        try:\
+                            df = pd.read_excel(arquivo)
+    
+                            for _, row in df.iterrows():\
+                                modelo.objects.create(**row.to_dict())\
+                            
+                        except Exception as e:\
+                            print(f"Erro ao processar {nomeCampo}: {e}")\
+                return render(request, 'upload.html', {'form': form, 'sucess': True})\
+        return render(request, 'upload.html', {'form': form})\
+
+## urls.py

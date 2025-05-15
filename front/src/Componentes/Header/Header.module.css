@@ -1,0 +1,15 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #7EA2AA;
+    padding: 1rem 2rem;
+}
+
+.logo, .sigla{
+    height: 90px;
+}
+
+.logo{
+    cursor: pointer;
+}

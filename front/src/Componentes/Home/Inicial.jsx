@@ -9,8 +9,17 @@ import upload from '../../assets/upload.png';
 import historico from '../../assets/historico.png'
 import { Header } from "../Header/Header";
 import { Footer } from "../Footer/Footer";
+import { useNavigate } from "react-router-dom";
 
 export function Inicial(){
+
+    const navigate = useNavigate();
+
+    const uploadNavigate = () =>{
+        navigate('/Upload');
+    }
+
+
     return(
         <>
             <Header/>
@@ -36,7 +45,7 @@ export function Inicial(){
                         <img src={historico} alt="" />
                         <h3>HISTÓRICO</h3>
                     </div>
-                    <div className={style.cards}>
+                    <div className={style.cards} onClick={uploadNavigate}>
                         <img src={upload} alt="" />
                         <h3>UPLOAD</h3>
                     </div>

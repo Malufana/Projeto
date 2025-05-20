@@ -14,10 +14,12 @@ export function Entrar(){
 
     const navigate = useNavigate();
 
+    //console.log("USERNAME: ", username);
+    //console.log("PASSWORD: ", password);
 
     useEffect(() => {
         localStorage.removeItem('token');
-    });
+    }, []);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -31,10 +33,19 @@ export function Entrar(){
             )
             const token = response.data.access;
             localStorage.setItem('token', token);
+            console.log(token);
             navigate('/Home');
         }catch(error){
-            console.log(error);
-            alert("Usuario não identificado!");
+            console.log("Erro no login", error.response || error.message || error);
+            if(error.response){
+                console.log("Erro: ", error.response.data);
+                console.log("Status: ", error.response.status);
+                alert("Erro: " + JSON.stringify(error.response.data));
+            } else{
+                console.log("Erro genérico: ", error.message);
+                alert("Erro inesperado!");
+            }
+            
         }
     }
 
@@ -57,7 +68,7 @@ export function Entrar(){
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
-                        <button type="submit" onClick={entrarNavigate}>Login</button>
+                        <button type="submit">Login</button>
                     </form>
                     <p className={style.registrar}>
                         Não tem conta? <Link className={style.registroLink}>Cadastre-se</Link>

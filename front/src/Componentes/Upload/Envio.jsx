@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import style from './Envio.module.css';
 import axios from 'axios';
+import { Header } from "../Header/Header";
+import { Footer } from "../Footer/Footer";
 
 export function Envio(){
     const [files, setFiles] = useState({
@@ -30,7 +32,7 @@ export function Envio(){
         });
 
         try{
-            const response = await axios.post('', formData, {
+            const response = await axios.post('http://127.0.0.1:8000/api/upload/', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -45,6 +47,7 @@ export function Envio(){
 
     return(
         <>
+        <Header />
         <div className={style.container}>
             <form onSubmit={handleSubmit} className={style.uploadForm}>
                 <h1>UPLOAD DE ARQUIVOS</h1>
@@ -59,6 +62,7 @@ export function Envio(){
                 <button type="submit">ENVIAR</button>
             </form>
         </div>
+        <Footer />
         </>
     );
 }

@@ -1,0 +1,61 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    min-height: 80vh;
+    background-color: #f5f5f5;
+}
+
+.uploadForm{
+    background-color: #fff;
+    padding: 2rem 3rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.uploadForm h1{
+    text-align: center;
+    font-size: 1.8rem;
+    color: #333;
+}
+
+.sectionUpload{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.sectionUpload label{
+    font-weight: 600;
+    color: #444;
+}
+
+.sectionUpload input[type="file"]{
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fafafa;
+    cursor: pointer;
+}
+
+button[type="submit"]{
+    padding: 0.75rem;
+    background-color: #7EA2AA;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    align-self: center;
+}
+
+button[type="submit"]:hover{
+    background-color: #607377;
+}

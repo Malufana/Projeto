@@ -6,9 +6,13 @@ import sigla from '../../assets/sigos.png'
 export function Header(){
     const navigate = useNavigate();
 
+    const homeNavigate = () =>{
+        navigate('/Home')
+    }
+
     return(
         <header className={style.header}>
-            <img src={logo} className={style.logo}/>
+            <img src={logo} className={style.logo} onClick={homeNavigate}/>
             <img src={sigla} className={style.sigla} />
         </header>
     );

@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import style from './TabelaPatrimonios.module.css';
+import style from '../Patrimonios/TabelaPatrimonios.module.css';
 import { Header } from '../Header/Header';
 import { Footer } from '../Footer/Footer';
 
-export function TabelaPatrimonios(){
-    const [patrimonio, setPatrimonio] = useState([]);
+export function TabelaAmbientes(){
+    const [ambiente, setAmbiente] = useState([]);
     const [error, setError] = useState("");
 
     useEffect(() => {
-        const fetchPatrimonio = async () => {
+        const fetchAmbiente = async () => {
             const token = localStorage.getItem("token");
 
             if(!token){
@@ -18,19 +18,19 @@ export function TabelaPatrimonios(){
             }
 
             try{
-                const response = await axios.get("http://127.0.0.1:8000/api/patrimonios/", {
+                const response = await axios.get("http://127.0.0.1:8000/api/ambientes/", {
                     headers:{
                         Authorization: `Bearer ${token}`,
                     },
                 });
-                setPatrimonio(response.data);
+                setAmbiente(response.data);
             }catch(error){
                 console.log("Erro ao buscar dados: ", error);
                 setError("Erro ao buscar dados")
             }
         };
 
-        fetchPatrimonio();
+        fetchAmbiente();
     }, []);
 
     if(error){
@@ -48,24 +48,24 @@ export function TabelaPatrimonios(){
         <>
         <Header />
         <div>
-            <h1 className={style.titulo}>PATRIMÔNIOS</h1>
+            <h1 className={style.titulo}>AMBIENTES</h1>
             <div className={style.rolagem}>
                 <table className={style.tabela}>
                     <thead>
                         <tr className={style.cabecalho}>
                             <th>ID</th>
-                            <th>NI</th>
+                            <th>SIG</th>
                             <th>DESCRIÇÃO</th>
-                            <th>LOCALIZAÇÃO</th>
+                            <th>RESPONSÁVEL</th>
                         </tr>
                     </thead>    
                     <tbody>
-                        {patrimonio.map((cont) =>(
+                        {ambiente.map((cont) =>(
                             <tr key={cont.id} className={style.linha}>
                                 <td>{cont.id}</td>
-                                <td>{cont.ni}</td>
+                                <td>{cont.sig}</td>
                                 <td>{cont.descricao}</td>
-                                <td>{cont.localizacao}</td>
+                                <td>{cont.responsavel}</td>
                             </tr>
                         ))}
                     </tbody>

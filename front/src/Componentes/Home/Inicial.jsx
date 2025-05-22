@@ -19,6 +19,13 @@ export function Inicial(){
         navigate('/Upload');
     }
 
+    const patrimonioNavigate = () =>{
+        navigate('/Patrimonio');
+    }
+
+    const ambientesNavigate = () =>{
+        navigate('/Ambientes');
+    }
 
     return(
         <>
@@ -29,17 +36,17 @@ export function Inicial(){
                         <img src={servico} alt="" />
                         <h3>ORDEM DE SERVIÇO</h3>
                     </div>
-                    <div className={style.cards}>
+                    <div className={style.cards} onClick={patrimonioNavigate}>
                         <img src={patrimonio} alt="" />
                         <h3>PATRIMÔNIO</h3>
                     </div>
-                    <div className={style.cards}>
+                    <div className={style.cards} onClick={ambientesNavigate}>
                         <img src={ambiente} alt="" />
                         <h3>AMBIENTES</h3>
                     </div>
-                    <div className={style.cards}>
+                    <div className={style.cards} >
                         <img src={manutentor} alt="" />
-                        <h3>MANUTENTORES</h3>
+                        <h3>FUNCIONARIOS</h3>
                     </div>
                     <div className={style.cards}>
                         <img src={historico} alt="" />

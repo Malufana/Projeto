@@ -11,14 +11,9 @@ class PatrimoniosSerializer(serializers.ModelSerializer):
         model = Patrimonios
         fields = '__all__'
 
-class ManutentoresSerializer(serializers.ModelSerializer):
+class FuncionariosSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Manutentores
-        fields = '__all__'
-
-class GestoresSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Gestores
+        model = Funcionarios
         fields = '__all__'
 
 class AreaSerializer(serializers.ModelSerializer):

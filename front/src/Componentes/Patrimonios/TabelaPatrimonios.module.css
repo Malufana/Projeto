@@ -1,0 +1,57 @@
+.titulo{
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 2rem;
+    color: #333;
+}
+
+.rolagem{
+    overflow-x: auto;
+    margin: 2rem auto;
+    max-width: 75%;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    padding: 1rem;
+}
+
+.tabela{
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.cabecalho th{
+    background-color: #7EA2AA;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.linha:nth-child(even){
+    background-color: #f9f9f9;
+}
+
+.linha:hover{
+    background-color: #f1f1f1;
+    transition: background-color 0.3s ease;
+}
+
+.linha td{
+    padding: 0.8rem;
+    border-bottom: 2px solid #ddd;
+    text-align: center;
+}
+
+.cardErro{
+    background-color: #ffe6e6;
+    color: #b30000;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 2rem auto;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(255,0,0,0.1);
+}

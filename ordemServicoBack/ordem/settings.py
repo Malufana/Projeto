@@ -132,4 +132,17 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 CORS_ALLOW_ALL_HEADERS = True
+CSRF_COOKIE_HTTPONLY = False  # Importante: permitir acesso JavaScript
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3000']  # Se estiver rodando React localmente
 CORS_ALLOW_CREDENTIALS = True
+
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:3000',
+]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}

@@ -4,6 +4,9 @@ from api.models import *
 from .forms import ExcelUploadForm
 from django.views import View
 
+
+
+
 class ProcessUploadView(View):
     def get(self, request):
         form = ExcelUploadForm()
@@ -16,8 +19,7 @@ class ProcessUploadView(View):
             arquivos = {
                 'ambientes': (request.FILES.get('ambientes'), Ambientes),
                 'patrimonios': (request.FILES.get('patrimonios'), Patrimonios),
-                'gestores': (request.FILES.get('gestores'), Gestores),
-                'manutentores': (request.FILES.get('manutentores'), Manutentores),
+                'funcionarios': (request.FILES.get('funcionario'), Funcionarios),
                 'area': (request.FILES.get('area'), Area)
             }
 
